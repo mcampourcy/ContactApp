@@ -7,10 +7,11 @@
  * @param addView
  * @constructor
  */
-function ContactController(model, listView, addView){
+function ContactController(model, listView, addView, detailView){
     this._model = model;
     this._listView = listView;
     this._addView = addView;
+    this._detailView = detailView;
     this.listen();
 }
 
@@ -19,15 +20,23 @@ function ContactController(model, listView, addView){
  * Check the view : if it changes, send datas to the model
  */
 ContactController.prototype.listen = function () {
-    this._addView.on('ADD', this.addAction.bind(this));
+    this._listView.on('SELECT', this.getContactAction.bind(this));
+    this._addView.on('ADD', this.addContactAction.bind(this));
 };
 
 /**
- * Function addAction
+ * Function getContactAction
+ * @param id
+ */
+ContactController.prototype.getContactAction = function (id) {
+    this._model.getContact(id);
+};
+
+/**
+ * Function addContactAction
  * @param val
  */
-ContactController.prototype.addAction = function(datas){
+ContactController.prototype.addContactAction = function(datas){
     var contact = new ContactModel(datas); //Create setters and getters from the view's datas
     this._model.addContact(contact); //Send the setters and getters to the model
-    $.mobile.navigate('#list-contact-page'); //The view goes back to the listView
 };

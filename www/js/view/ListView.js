@@ -15,8 +15,8 @@ function ListView(model) {
     EventEmitter.call(this); //Call the parent constructor with the object's datas
     this._model = model;
     this.init();
-    this.bindListeners();
     this.listen();
+    this.bindListeners();
     this.display();
 }
 
@@ -33,18 +33,18 @@ ListView.prototype.init = function () {
 };
 
 /**
- * Function bindListeners
- * Add Events Listeners
- */
-ListView.prototype.bindListeners = function(){
-};
-
-/**
  * Function listen
  * Check the model : if it changes, display the view with new datas
  */
 ListView.prototype.listen = function () {
     this._model.on('LIST', this.display.bind(this));
+};
+
+/**
+ * Function bindListeners
+ * Add Events Listeners
+ */
+ListView.prototype.bindListeners = function(){
 };
 
 /**
@@ -63,23 +63,30 @@ ListView.prototype.display = function () {
         this._model.contacts.forEach(function (contact, index) { //In JavaScript, arrays always use numbered indexes
 
             //Elements creation
-            this.contactAlone = document.createElement('div');
-            var img = document.createElement('img');
-            this.contactTitle = document.createElement('div');
-            var h2 = document.createElement('h2');
+            var contactAlone = document.createElement('div');
+            var contactTitle = document.createElement('div');
+            contactAlone.className = 'contact-alone';
+            contactTitle.className = 'contact-title';
 
-            this.contactAlone.className = 'contact-alone';
-            this.contactTitle.className = 'contact-title';
+            var img = document.createElement('img');
+            var h2 = document.createElement('h2');
 
             //Datas
             img.setAttribute('src', contact.getsrcImg());
             h2.innerHTML = contact.getFirstname() + ' ' + contact.getLastname();
+            contactAlone.dataset.id = contact.getcontactId();
 
             //Add to DOM
-            this._contactList.appendChild(this.contactAlone);
-            this.contactAlone.appendChild(img);
-            this.contactAlone.appendChild(this.contactTitle);
-            this.contactTitle.appendChild(h2);
+            this._contactList.appendChild(contactAlone);
+            contactAlone.appendChild(img);
+            contactAlone.appendChild(contactTitle);
+            contactTitle.appendChild(h2);
+
+            contactAlone.addEventListener('click', function (e) {
+                e.preventDefault();
+                this.emit('SELECT', e.currentTarget.dataset.id);
+            }.bind(this));
+
         }.bind(this));
     }
 };

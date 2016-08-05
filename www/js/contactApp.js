@@ -10,5 +10,6 @@ function initApp(){
     var actionModel = new ActionModel();
     var listView = new ListView(actionModel);
     var addView = new AddView(actionModel);
-    var controller = new ContactController(actionModel, listView, addView);
+    var detailView = new DetailView(actionModel);
+    var controller = new ContactController(actionModel, listView, addView, detailView);
 }

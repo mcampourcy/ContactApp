@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Zis is a page</title>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- PAGE1 -->
+<!-- PAGE LIST -->
 <div data-role="page" id="list-contact-page">
     <div data-role="header">
         <h1>Liste des copains</h1>
@@ -23,9 +24,9 @@
         </div>
     </div>
 </div>
-<!-- !PAGE1 -->
+<!-- !PAGE LIST -->
 
-<!-- !PAGE2 -->
+<!-- !PAGE ADD -->
 <div data-role="page" id="add-contact-page" data-theme="a">
     <div data-role="header">
         <h1>Ajouter un copain</h1>
@@ -36,6 +37,7 @@
                 <img src="images/bg.jpg" id="img-contact">
             </figure>
             <button type="button" class="ui-btn ui-corner-all ui-shadow ui-btn-b" name="add-img-btn" id="add-img-btn">Prendre une photo</button>
+            <input type="hidden" name="contactId" id="contactId" value="-1">
             <label for="lastname" class="ui-hidden-accessible">Nom :</label>
             <input name="lastname" id="lastname" value="" placeholder="Nom du copain" data-theme="a" type="text">
             <label for="firstname" class="ui-hidden-accessible">Prénom :</label>
@@ -47,7 +49,13 @@
             <button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check" type="submit">Ajouter</button>
         </form>
     </div>
-</div><!-- !PAGE2 -->
+</div><!-- !PAGE ADD -->
+
+<!-- !PAGE DETAIL -->
+<div data-role="page" id="detail-contact-page" data-theme="a">
+    <div role="main" class="ui-content">
+    </div>
+</div><!-- !PAGE ADD -->
 
 <script type="text/javascript" src="cordova.js"></script>
 <script src="js/library/jquery-1.12.4.min.js"></script>
@@ -57,6 +65,7 @@
 <script src="js/model/ContactModel.js"></script>
 <script src="js/view/ListView.js"></script>
 <script src="js/view/AddView.js"></script>
+<script src="js/view/DetailView.js"></script>
 <script src="js/controller/ContactController.js"></script>
 <script src="js/contactApp.js"></script>
 </body>

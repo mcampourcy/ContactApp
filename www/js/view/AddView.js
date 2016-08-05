@@ -29,6 +29,7 @@ AddView.prototype.constructor = AddView; //precise that the constructor's protot
 AddView.prototype.init = function () {
     this._addContact = document.getElementById('add-contact-btn');
     this._addContactForm = document.getElementById('add-contact-form');
+    this._contactId = document.getElementById('contactId');
     this._addImageBtn = document.getElementById('add-img-btn');
     this._imgContact = document.getElementById('img-contact');
 };
@@ -43,6 +44,7 @@ AddView.prototype.bindListeners = function(){
     this._addContact.addEventListener('click', function (e) {
         e.preventDefault();
         this._addContactForm.reset();
+        this._contactId.value = -1;
         $.mobile.navigate('#add-contact-page');
     }.bind(this));
 

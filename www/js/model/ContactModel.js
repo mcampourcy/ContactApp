@@ -7,6 +7,7 @@
  */
 function ContactModel(datas) {
     if(datas){
+        this.contactId = datas.contactId;
         this.lastname = datas.lastname;
         this.firstname = datas.firstname;
         this.phone = datas.phone;
@@ -14,6 +15,14 @@ function ContactModel(datas) {
         this.srcImg = datas.srcImg;
     }
 }
+
+ContactModel.prototype.getcontactId = function () {
+  return this.contactId;
+};
+
+ContactModel.prototype.setcontactId = function (contactId) {
+  this.contactId = contactId;
+};
 
 ContactModel.prototype.getLastname = function () {
     return this.lastname;
